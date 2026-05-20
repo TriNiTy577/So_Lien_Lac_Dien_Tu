@@ -2,9 +2,9 @@
 
 
 include_once 'database.php';
-if (!isset($_SESSION['user']) || $_SESSION['role'] != 'Student') {
-  # code...
-  header('Location:./logout.php');
+if (!isset($_SESSION['user']) || $_SESSION['role'] != 'Parent') {
+    # code...
+    header('Location:./logout.php');
 }
 ?>
 
@@ -83,26 +83,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <tbody>
                                                     <?php
 
-                          $sql = "SELECT er.*, 
+                                                    $sql = "SELECT er.*, 
                                     sub.title as subject_name
                                   FROM examresult er
                                   LEFT JOIN exam e ON e.id = er.exam
                                   LEFT JOIN subject sub ON sub.sid = e.subject
-                                  WHERE er.student = '" . $_SESSION['uid'] . "'";
-                          $result = $conn->query($sql);
+                                  WHERE er.student = '" . $_GET['sid'] . "'";
+                                                    $result = $conn->query($sql);
 
-                          if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                              echo "<tr>
+                                                    if ($result->num_rows > 0) {
+                                                        while ($row = $result->fetch_assoc()) {
+                                                            echo "<tr>
                                       <td>" . $row["exam"] . "</td>
                                       <td>" . $row["subject_name"] . "</td>
                                       <td>" . $row["marks"] . "</td>
                                       <td>" . $row["grade"] . "</td>
                                     </tr>";
-                            }
-                          }
+                                                        }
+                                                    }
 
-                          ?>
+                                                    ?>
 
                                                 </tbody>
                                             </table>
