@@ -370,7 +370,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             // output data of each row
                             while ($row = $result->fetch_assoc()) {
                               $class = (isset($_GET['update']) && $_GET['update'] == $row["sid"]) ? 'parent' : '';
-                              echo "<tr class='{$class}'><td> " . $row["sid"] . " </td><td> " . $row["fname"] . " " . $row["lname"] . " </td><td> " . $row["bday"] . "</td><td>" . $row["gender"] . "</td><td>" . $row["address"] . "</td><td>" . $row["classroom"] . "</td><td>" . $row["parent"] . "</td><td><a href='student.php?update=" . $row["sid"] . "'><small class='btn btn-sm btn-primary'>Update</small></a></td></tr>";
+                              echo "<tr class='{$class}'><td> " . $row["sid"] . " </td><td> " . $row["lname"] . " " . $row["fname"] . " </td><td> " . $row["bday"] . "</td><td>" . $row["gender"] . "</td><td>" . $row["address"] . "</td><td>" . $row["classroom"] . "</td><td>" . $row["parent"] . "</td><td><a href='student.php?update=" . $row["sid"] . "'><small class='btn btn-sm btn-primary'>Update</small></a></td></tr>";
                             }
                           }
 
