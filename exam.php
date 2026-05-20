@@ -192,7 +192,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         if ($result->num_rows > 0) {
                           // output data of each row
                           while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row["sid"] . "' >" . $row["title"] . "</option>";
+                            echo "<option value='" . $row["sid"] . "' >" . $row["title"] . "_ID:" . $row["sid"] . "</option>";
                           }
                         }
                         ?>
@@ -213,7 +213,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         if ($result->num_rows > 0) {
                           // output data of each row
                           while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row["hno"] . "' >" . $row["title"] . "</option>";
+                            echo "<option value='" . $row["hno"] . "' >" . $row["title"] . "_ID:" . $row["hno"] . "</option>";
                           }
                         }
                         ?>
@@ -231,7 +231,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         if ($result->num_rows > 0) {
                           // output data of each row
                           while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row["tid"] . "' >" . $row["fname"] . " " . $row["lname"] . "</option>";
+                            echo "<option value='" . $row["tid"] . "' >" . $row["fname"] . " " . $row["lname"] . "_ID:" . $row["tid"] . "</option>";
                           }
                         }
                         ?>
@@ -246,8 +246,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="date" name='date' class="form-control pull-right"
-                                                    id="datepicker" placeholder="mm/dd/yyyy">
+                                                <input type="text" name='date' class="form-control pull-right"
+                                                    id="datepicker" placeholder="Select Student's Data of Birth">
                                             </div>
                                             <!-- /.input group -->
 
