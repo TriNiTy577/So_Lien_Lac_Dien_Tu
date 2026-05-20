@@ -2,7 +2,7 @@
 
 
 include_once 'database.php';
-if (!isset($_SESSION['user'])||$_SESSION['role']!='Student') {
+if (!isset($_SESSION['user']) || $_SESSION['role'] != 'Student') {
   # code...
   header('Location:./logout.php');
 }
@@ -15,10 +15,12 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> Dashboard</title><link rel="icon" href="../img/favicon2.png">
+  <title> Dashboard</title>
+  <link rel="icon" href="../img/favicon2.png">
   <!-- Tell the browser to be responsive to screen width -->
   <?php include_once 'header.php'; ?>
 
@@ -68,64 +70,73 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                           <tr>
-                           <th>Exam ID</th>
-                           <th>Student ID</th>
-                           <th>Marks</th>
-                           <th>Grade</th>
-                         </tr>
-                       </thead>
+                            <th>Exam ID</th>
+                            <th>Subject</th>
+                            <th>Marks</th>
+                            <th>Grade</th>
+                          </tr>
+                        </thead>
 
 
-                       <tbody>
-                        <?php
+                        <tbody>
+                          <?php
 
-                        $sql = "SELECT * FROM examresult where student='".$_SESSION['uid']."'";
-                        $result = $conn->query($sql);
+                          $sql = "SELECT er.*, 
+                                    sub.title as subject_name
+                                  FROM examresult er
+                                  LEFT JOIN exam e ON e.id = er.exam
+                                  LEFT JOIN subject sub ON sub.sid = e.subject
+                                  WHERE er.student = '" . $_SESSION['uid'] . "'";
+                          $result = $conn->query($sql);
 
-                        if ($result->num_rows > 0) {
-                   // output data of each row
-                         while($row = $result->fetch_assoc()) {
-                          echo "<tr><td> " . $row["exam"]. " </td><td> " . $row["student"]." </td><td> " . $row["marks"]." </td><td> " . $row["grade"]. "</td></tr>";
-                        }
-                      }
+                          if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                              echo "<tr>
+                                      <td>" . $row["exam"] . "</td>
+                                      <td>" . $row["subject_name"] . "</td>
+                                      <td>" . $row["marks"] . "</td>
+                                      <td>" . $row["grade"] . "</td>
+                                    </tr>";
+                            }
+                          }
 
-                      ?>
+                          ?>
 
-                    </tbody>
-                  </table>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
+        <!-- /.box -->
+
       </div>
 
     </div>
-    <!-- /.box -->
+    <!-- /page content -->
 
+    <!-- footer content -->
+    <footer>
+      <div class="pull-right">
+        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
   </div>
-
-</div>
-<!-- /page content -->
-
-<!-- footer content -->
-<footer>
-  <div class="pull-right">
-    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
   </div>
-  <div class="clearfix"></div>
-</footer>
-<!-- /footer content -->
-</div>
-</div>
-<?php include_once 'footer.php'; ?>
+  <?php include_once 'footer.php'; ?>
 
 
-<script type="text/javascript">
-  $('#myDatepicker3, #myDatepicker4').datetimepicker({
-    format: 'hh:mm A'
-  });
-</script>
+  <script type="text/javascript">
+    $('#myDatepicker3, #myDatepicker4').datetimepicker({
+      format: 'hh:mm A'
+    });
+  </script>
 
 </body>
 

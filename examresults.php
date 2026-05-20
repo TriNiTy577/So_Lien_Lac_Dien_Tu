@@ -230,7 +230,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         if ($result->num_rows > 0) {
                           while ($row = $result->fetch_assoc()) {
                             echo "<option value='" . $row["id"] . "'>"
-                              . $row["subject_name"] 
+                              . $row["subject_name"]
+                              . " - ID:" . $row["id"]
                               . " - Date:" . $row["date"]
                               . "</option>";
                           }
@@ -253,7 +254,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         if ($result->num_rows > 0) {
                           // output data of each row
                           while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row["sid"] . "' >" . $row["fname"] . " " . $row["lname"]  . "</option>";
+                            echo "<option value='" . $row["sid"] . "' >" . $row["fname"] . " " . $row["lname"] . " -ID:" . $row["sid"] . "</option>";
                           }
                         }
                         ?>
@@ -349,7 +350,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           <?php
 
                           $sql = "SELECT er.*, 
-                                    CONCAT(s.fname, ' ', s.lname) as student_name
+                                    CONCAT(s.fname, ' ', s.lname, ' - ID: ', s.sid) as student_name
                                   FROM examresult er
                                   LEFT JOIN student s ON s.sid = er.student";
 
