@@ -1,11 +1,14 @@
-<?php session_start();
-
-
+<?php
+session_start();
 include_once 'database.php';
-if (!isset($_SESSION['user'])) {
-  # code...
-  header('Location:./logout.php');
+
+if (!isset($_SESSION['user']) || !isset($_SESSION['uid']) || !isset($_SESSION['role'])) {
+    header('Location: ./logout.php');
+    exit();
 }
+
+$fname = $lname = $email = $address = $gender = $dob = '';
+$sid = $tid = $pid = $nic = $contact = $skill = $classroom = $parent = $occupation = '';
 ?>
 <?php
 
@@ -132,7 +135,6 @@ $nic = $fname = $lname = $contact = $occupation = $dob = $gender = $address = $e
       $lname = $row['lname'];
       $contact = $row['contact'];
       $occupation = $row['job'];
-      $dob = date_format(new DateTime($row['bday']),'Y-m-d');
                 //echo $dob;
       $gender = $row['gender'];
       $address = $row['address'];

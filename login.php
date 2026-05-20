@@ -30,8 +30,10 @@ if (isset($_POST['submit'])) {
       }
     }
     header("Location:./");
+     exit();
   }else{
     $message = "<p style='width:100%;text-align;center'>Incorrect username or password</p>";
+      session_destroy();
   }
 }
 ?>
