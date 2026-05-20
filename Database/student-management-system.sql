@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5ubuntu0.5
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 30, 2022 at 07:57 PM
--- Server version: 5.7.38-0ubuntu0.18.04.1
--- PHP Version: 7.4.29
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 20, 2026 lúc 04:34 PM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,23 +18,23 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `schoolnew1`
+-- Cơ sở dữ liệu: `student-management-system`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `attendance`
+-- Cấu trúc bảng cho bảng `attendance`
 --
 
 CREATE TABLE `attendance` (
   `sid` int(10) NOT NULL,
   `date` date NOT NULL,
   `aid` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `attendance`
+-- Đang đổ dữ liệu cho bảng `attendance`
 --
 
 INSERT INTO `attendance` (`sid`, `date`, `aid`) VALUES
@@ -41,22 +42,25 @@ INSERT INTO `attendance` (`sid`, `date`, `aid`) VALUES
 (1, '2020-05-30', 4),
 (2, '2020-05-02', 5),
 (2, '1975-09-17', 6),
-(3, '2005-06-30', 7);
+(3, '2005-06-30', 7),
+(16, '2026-05-20', 8),
+(18, '2026-05-20', 9),
+(18, '2026-05-20', 10);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `attendancereport`
+-- Cấu trúc bảng cho bảng `attendancereport`
 --
 
 CREATE TABLE `attendancereport` (
   `aid` int(20) NOT NULL,
   `sid` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `attendancereport`
+-- Đang đổ dữ liệu cho bảng `attendancereport`
 --
 
 INSERT INTO `attendancereport` (`aid`, `sid`, `status`) VALUES
@@ -68,7 +72,7 @@ INSERT INTO `attendancereport` (`aid`, `sid`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `classroom`
+-- Cấu trúc bảng cho bảng `classroom`
 --
 
 CREATE TABLE `classroom` (
@@ -76,21 +80,21 @@ CREATE TABLE `classroom` (
   `title` varchar(50) NOT NULL,
   `location` varchar(50) NOT NULL,
   `capacity` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `classroom`
+-- Đang đổ dữ liệu cho bảng `classroom`
 --
 
 INSERT INTO `classroom` (`hno`, `title`, `location`, `capacity`) VALUES
-('4-B', 'Nilwala', 'Block-D', 50),
-('Aute in irure autem ', 'Aut magnam fugiat r', 'Aliquam minim numqua', 12),
-('Sunt cillum qui iust', 'Eum hic ipsum ration', 'Ut nostrum laborum ', 48);
+('4-A', '4-A', 'Block-D', 12),
+('4-B', '4-B', 'Block-D', 50),
+('4-C', '4-C', 'Block-D', 48);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `exam`
+-- Cấu trúc bảng cho bảng `exam`
 --
 
 CREATE TABLE `exam` (
@@ -101,20 +105,22 @@ CREATE TABLE `exam` (
   `date` date NOT NULL,
   `stime` time NOT NULL,
   `etime` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `exam`
+-- Đang đổ dữ liệu cho bảng `exam`
 --
 
 INSERT INTO `exam` (`id`, `subject`, `teacher`, `classroom`, `date`, `stime`, `etime`) VALUES
-(1, 'SCM4251', 'TC1000020000', '4-B', '2020-05-26', '11:45:00', '12:45:00'),
-(2, '', 'Andrew', '4-B', '2022-05-20', '00:00:00', '00:00:00');
+(5, '1', '1', '4-A', '2026-05-19', '07:00:00', '11:00:00'),
+(6, '1', '1', '4-A', '2026-05-20', '00:00:00', '00:00:00'),
+(7, '1', '3', '4-A', '2026-05-22', '07:00:00', '11:00:00'),
+(8, '4', '2', '4-A', '2026-05-21', '07:00:00', '11:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `examresult`
+-- Cấu trúc bảng cho bảng `examresult`
 --
 
 CREATE TABLE `examresult` (
@@ -122,22 +128,23 @@ CREATE TABLE `examresult` (
   `student` varchar(50) NOT NULL,
   `marks` int(10) NOT NULL,
   `grade` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `examresult`
+-- Đang đổ dữ liệu cho bảng `examresult`
 --
 
 INSERT INTO `examresult` (`exam`, `student`, `marks`, `grade`) VALUES
-(1, 'Brittany', 44, 'C-'),
-(1, 'ST1000010001', 55, 'C+'),
-(1, 'ST1000010002', 77, 'A+'),
-(2, 'Kiayada', 91, 'C+');
+(5, '3', 78, 'B+'),
+(5, '4', 67, 'D'),
+(5, '5', 12, 'E'),
+(5, '9', 78, 'B+'),
+(8, '3', 74, 'B');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notice`
+-- Cấu trúc bảng cho bảng `notice`
 --
 
 CREATE TABLE `notice` (
@@ -145,20 +152,21 @@ CREATE TABLE `notice` (
   `notice` varchar(1500) NOT NULL,
   `odience` varchar(100) NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `notice`
+-- Đang đổ dữ liệu cho bảng `notice`
 --
 
 INSERT INTO `notice` (`id`, `notice`, `odience`, `date`) VALUES
-(5, 'Ea cum labore illo n', 'Parent', '2022-05-30 10:52:24'),
-(6, 'Dolores suscipit qui', 'Select Odience', '2022-05-30 10:52:27');
+(7, 'thong bao test cho Stu', 'Student', '2026-05-20 21:32:01'),
+(8, 'Thong bao test cho pa', 'Parent', '2026-05-20 21:32:15'),
+(9, 'Thong bao test cho all', 'All', '2026-05-20 21:32:24');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `parent`
+-- Cấu trúc bảng cho bảng `parent`
 --
 
 CREATE TABLE `parent` (
@@ -171,21 +179,21 @@ CREATE TABLE `parent` (
   `gender` varchar(25) NOT NULL,
   `nic` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `parent`
+-- Đang đổ dữ liệu cho bảng `parent`
 --
 
 INSERT INTO `parent` (`pid`, `fname`, `lname`, `contact`, `job`, `address`, `gender`, `nic`, `email`) VALUES
-(1, 'Kelly', 'Kelly', '0785566022555', 'Engineer', 'Colombo Road\r\nPilimathalawa.', 'Male', '7855485552V', 'parent@gmail.com'),
-(2, 'Natasha', 'Belle', 'Rebecca', 'Alvin', 'Laborum Iure ea nos', 'Female', 'Aladdin', 'qiwip@mailinator.com'),
-(3, 'Taylor', 'Swift', 'Roary', 'Price', 'Laborum maiores vel ', 'Male', 'Merrill', 'dabecapywa@mailinator.com');
+(1, 'Kelly', 'Kelly', '078556645', 'Kỹ sư', 'Hà Nội', 'Male', '7855485552', 'parent@gmail.com'),
+(2, 'Natasha', 'Romanoff', '213157964', 'Kế Toán', 'Hải Phòng', 'Female', '031205678994', 'Natasha@gmail.com'),
+(3, 'Taylor', 'Swift', '214124567', 'Kế toán', 'Hải Phòng', 'Male', '103974758', 'Taylor@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedule`
+-- Cấu trúc bảng cho bảng `schedule`
 --
 
 CREATE TABLE `schedule` (
@@ -196,30 +204,27 @@ CREATE TABLE `schedule` (
   `stime` time NOT NULL,
   `class` varchar(50) NOT NULL,
   `etime` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `schedule`
+-- Đang đổ dữ liệu cho bảng `schedule`
 --
 
 INSERT INTO `schedule` (`id`, `subject`, `teacher`, `day`, `stime`, `class`, `etime`) VALUES
-(1, 'SCM4251', 'TC1000020000', 'Wendsday', '04:15:00', '4-B', '04:15:00'),
-(2, 'SCM4251', 'TC1000020000', 'Thursday', '05:30:00', '4-B', '07:45:00'),
-(3, 'Voluptatem Consequa', 'Andrew', 'Monday', '01:21:23', '4-B', '00:01:23'),
-(4, 'Quas laudantium nem', 'TC1000020000', 'Thursday', '12:31:23', 'Aute in irure autem ', '00:01:23'),
-(5, 'Sequi fugiat molliti', 'Andrew', 'Sunday', '00:00:00', 'Select Class Room', '00:00:00'),
-(6, '', 'TC1000020000', 'Saturday', '00:00:00', 'Aute in irure autem ', '00:00:00'),
-(7, 'Select Subject', 'Andrew', 'Monday', '00:00:00', 'Select Class Room', '00:00:00'),
-(8, 'Quaerat illum nesci', 'Andrew', 'Wendsday', '00:00:00', 'Aute in irure autem ', '00:00:00');
+(16, '1', '1', 'Monday', '07:00:00', '4-A', '11:00:00'),
+(17, '2', '2', 'Tuesday', '07:00:00', '4-B', '11:00:00'),
+(18, '3', '3', 'Wendsday', '07:00:00', '4-C', '11:00:00'),
+(19, '1', '1', 'Monday', '07:00:00', 'Select Class Room', '11:00:00'),
+(20, '7', '3', 'Saturday', '07:00:00', '4-B', '00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student`
+-- Cấu trúc bảng cho bảng `student`
 --
 
 CREATE TABLE `student` (
-  `sid` varchar(25) NOT NULL,
+  `sid` int(25) NOT NULL,
   `fname` varchar(50) NOT NULL,
   `lname` varchar(50) NOT NULL,
   `bday` date NOT NULL,
@@ -228,63 +233,61 @@ CREATE TABLE `student` (
   `gender` varchar(10) NOT NULL,
   `classroom` varchar(25) NOT NULL,
   `email` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `student`
+-- Đang đổ dữ liệu cho bảng `student`
 --
 
 INSERT INTO `student` (`sid`, `fname`, `lname`, `bday`, `address`, `parent`, `gender`, `classroom`, `email`) VALUES
-('Bethany', 'Walker', 'Nathaniel', '1971-02-23', 'Velit accusamus rer', 0, 'Male', 'Select Class Room', 'behof@mailinator.com'),
-('Brittany', 'Noah', 'Odessa', '2017-08-22', 'Expedita nobis et al', 0, 'Male', 'Select Class Room', 'hocy@mailinator.com'),
-('Brody', 'Kendall', 'Isabelle', '1989-01-11', 'Nostrud dolor est ve', 1, 'Female', '4-B', 'vabylem@mailinator.com'),
-('Illana', 'Mufutau', 'Walker', '2016-04-06', 'In voluptates rem no', 0, 'Male', '4-B', 'sibokuzi@mailinator.com'),
-('Kiayada', 'Robin', 'Ariel', '1997-05-31', 'Magna architecto sol', 0, 'Female', '4-B', 'qofydynif@mailinator.com'),
-('Lilah', 'Miranda', 'Xavier', '2010-03-12', 'Proident vel perspi', 1, 'Female', '4-B', 'xohunelocy@mailinator.com'),
-('Rafael', 'Montana', 'Molly', '2017-12-29', 'Cumque voluptatem O', 1, 'Male', 'Select Class Room', 'tiqohababo@mailinator.com'),
-('ST1000010001', 'Kasun1', 'Chamara', '2022-05-19', 'Colombo Road \r\nKandy', 1, 'Female', '4-B', 'student@gmail.com'),
-('ST1000010002', 'Dasun4', 'Shanuka', '2020-05-31', 'Ampara Road \r\nUhana', 1, 'Male', '4-B', 'stu1@stu1.stu1'),
-('STU1000040000', 'Dilip', 'Silva', '2022-05-19', 'asasas', 1, 'Male', '4-B', 'dil@dil.dil'),
-('STU100004005', 'Hashini', 'Asiri', '2020-05-27', 'asassas', 1, 'Female', 'Select Class Room', 'h@h.h');
+(1, 'Minh Quân', 'Nguyễn', '2018-01-23', 'Hà Nội', 1, 'Male', '4-A', 'quan@gmail.com'),
+(2, 'Khánh Linh', 'Lê Trần', '2017-08-22', 'Hồ Chí Minh', 2, 'Male', '4-B', 'linh@gmail.com'),
+(3, 'Đức Anh', 'Phạm ', '2017-01-11', 'Hải Phòng', 1, 'Male', '4-B', 'ducanh@gmail.com'),
+(4, 'Thanh Tuyền', 'Trần Thị', '2016-04-06', 'Đà Nẵng', 1, 'Female', '4-B', 'thanhhuyen@gmail.com'),
+(5, 'Gia Bảo', 'Hoàng', '2009-05-31', 'Hải Phòng', 1, 'Male', '4-B', 'bao@gmail.com'),
+(6, 'Hải Yến', 'Vũ', '2010-03-12', 'Hà Nội', 1, 'Female', '4-B', 'haiyen@gmail.com'),
+(7, 'Nam Phong', 'Đỗ', '2017-12-29', 'Hải Phòng', 1, 'Male', '4-A', 'phong@gmail.com'),
+(8, 'Minh Tuyết', 'Bùi', '2022-05-19', 'Biên Hòa', 1, 'Female', '4-B', 'student@gmail.com'),
+(9, 'Quang Huy', 'Ngô', '2020-05-31', 'Hạ Long', 1, 'Male', '4-B', 'huy@gmail.com'),
+(10, 'Thúy Ngân', 'Đặng', '2022-05-19', 'Thái Bình', 1, 'Female', '4-B', 'ngan@gmail.com'),
+(11, 'Đình Nguyên', 'Phan', '2020-05-27', 'Thanh Hóa', 1, 'Female', '4-B', 'nguyet@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subject`
+-- Cấu trúc bảng cho bảng `subject`
 --
 
 CREATE TABLE `subject` (
-  `sid` varchar(50) NOT NULL,
+  `sid` int(50) NOT NULL,
   `title` varchar(200) NOT NULL,
   `description` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `subject`
+-- Đang đổ dữ liệu cho bảng `subject`
 --
 
 INSERT INTO `subject` (`sid`, `title`, `description`) VALUES
-('Aute est nulla volup', 'Ipsa in voluptas vo', 'Saepe officia culpa '),
-('Autem at ea sint co', 'Est recusandae Quos', 'Aut illum porro id '),
-('Et pariatur Dolores', 'Animi amet dolor f', 'Et atque et pariatur'),
-('Lorem sipsum', 'Loadfushn gulg', 'Lores informr'),
-('Odio quasi enim nost', 'Quia ut libero dolor', 'Necessitatibus non n'),
-('Praesentium quo et a', 'Dicta error est sunt', 'Est eaque ea placea'),
-('Quaerat illum nesci', 'Velit voluptatem N', 'Alias quis quam elig'),
-('Quas laudantium nem', 'Aspernatur Nam sapie', 'Ea animi culpa ill'),
-('SCM4251', 'Science and Technology', 'Chemistry Basics\r\n'),
-('Sequi fugiat molliti', 'Quas debitis volupta444', 'Ex reiciendis omnis '),
-('Vero aperiam facere ', 'Animi est sed aliq', 'Atque quidem explica'),
-('Voluptatem Consequa', 'Dignissimos in eos ', 'Excepturi deserunt i');
+(1, 'Toán học', 'Toán học'),
+(2, 'Ngữ Văn', 'Ngữ Văn'),
+(3, 'Lịch Sử', 'Lịch Sử'),
+(4, 'Tiếng Anh', 'Tiếng Anh'),
+(5, 'Vật lí', 'Vật lí'),
+(6, 'Hóa học', 'Hóa học'),
+(7, 'Sinh học', 'Sinh học'),
+(8, 'Địa lí', 'Địa lí'),
+(9, 'Công nghệ', 'Công nghệ'),
+(10, 'Tin học', 'Tin học');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `teacher`
+-- Cấu trúc bảng cho bảng `teacher`
 --
 
 CREATE TABLE `teacher` (
-  `tid` varchar(50) NOT NULL,
+  `tid` int(50) NOT NULL,
   `fname` varchar(50) NOT NULL,
   `lname` varchar(50) NOT NULL,
   `address` varchar(50) NOT NULL,
@@ -293,146 +296,172 @@ CREATE TABLE `teacher` (
   `skill` varchar(500) NOT NULL,
   `gender` varchar(25) NOT NULL,
   `email` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `teacher`
+-- Đang đổ dữ liệu cho bảng `teacher`
 --
 
 INSERT INTO `teacher` (`tid`, `fname`, `lname`, `address`, `contact`, `bday`, `skill`, `gender`, `email`) VALUES
-('Andrew', 'Lawrence45', 'Odette', 'Ipsa et distinctio', 'Eve123123', '2022-05-19', 'Ut voluptatem dolor', 'Female', 'hina@mailinator.com'),
-('Ramona', 'Raphael', 'Seth', 'Tempor sit doloribu', 'Roary', '1978-09-27', 'Rerum dolor et nulla', 'Male', 'gojewili@mailinator.com'),
-('TC1000020000', 'Nimal ', 'Soyza555', 'Kandy Road\r\nNittambuwa', '0339988554', '2022-05-21', 'Science\r\nMathematics\r\nHistory', 'Male', 'tea@tea.tea');
+(1, 'Trọng Phú', 'Trần', 'Thái Bình', '0123456789', '2026-05-20', 'Toán', 'Male', 'phu@gmail.com'),
+(2, 'Phúc', 'Hoàng', 'Hải Phòng', '1278371123', '2005-09-19', 'Ngữ Văn', 'Male', 'phuc@gmail.com'),
+(3, 'Nimal ', 'Soyza', 'Hà Nội', '0339988554', '2026-05-20', 'Tin Học', 'Female', 'teacher@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Cấu trúc bảng cho bảng `user`
 --
 
 CREATE TABLE `user` (
   `role` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user`
+-- Đang đổ dữ liệu cho bảng `user`
 --
 
 INSERT INTO `user` (`role`, `email`, `password`) VALUES
+('Student', 'ducanh@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
 ('Parent', 'parent@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
+('Teacher', 'phuc@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
 ('Student', 'student@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
 ('Teacher', 'teacher@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `attendance`
+-- Chỉ mục cho bảng `attendance`
 --
 ALTER TABLE `attendance`
   ADD PRIMARY KEY (`aid`);
 
 --
--- Indexes for table `attendancereport`
+-- Chỉ mục cho bảng `attendancereport`
 --
 ALTER TABLE `attendancereport`
   ADD PRIMARY KEY (`aid`,`sid`);
 
 --
--- Indexes for table `classroom`
+-- Chỉ mục cho bảng `classroom`
 --
 ALTER TABLE `classroom`
   ADD PRIMARY KEY (`hno`);
 
 --
--- Indexes for table `exam`
+-- Chỉ mục cho bảng `exam`
 --
 ALTER TABLE `exam`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `examresult`
+-- Chỉ mục cho bảng `examresult`
 --
 ALTER TABLE `examresult`
   ADD PRIMARY KEY (`exam`,`student`);
 
 --
--- Indexes for table `notice`
+-- Chỉ mục cho bảng `notice`
 --
 ALTER TABLE `notice`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `parent`
+-- Chỉ mục cho bảng `parent`
 --
 ALTER TABLE `parent`
   ADD PRIMARY KEY (`pid`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `schedule`
+-- Chỉ mục cho bảng `schedule`
 --
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `student`
+-- Chỉ mục cho bảng `student`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`sid`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `subject`
+-- Chỉ mục cho bảng `subject`
 --
 ALTER TABLE `subject`
   ADD PRIMARY KEY (`sid`);
 
 --
--- Indexes for table `teacher`
+-- Chỉ mục cho bảng `teacher`
 --
 ALTER TABLE `teacher`
   ADD PRIMARY KEY (`tid`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `user`
+-- Chỉ mục cho bảng `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `attendance`
+-- AUTO_INCREMENT cho bảng `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `aid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `aid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
--- AUTO_INCREMENT for table `exam`
+-- AUTO_INCREMENT cho bảng `exam`
 --
 ALTER TABLE `exam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT for table `notice`
+-- AUTO_INCREMENT cho bảng `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
--- AUTO_INCREMENT for table `parent`
+-- AUTO_INCREMENT cho bảng `parent`
 --
 ALTER TABLE `parent`
   MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT for table `schedule`
+-- AUTO_INCREMENT cho bảng `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT cho bảng `student`
+--
+ALTER TABLE `student`
+  MODIFY `sid` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT cho bảng `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `sid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT cho bảng `teacher`
+--
+ALTER TABLE `teacher`
+  MODIFY `tid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
