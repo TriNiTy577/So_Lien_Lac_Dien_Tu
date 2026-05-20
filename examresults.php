@@ -230,8 +230,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         if ($result->num_rows > 0) {
                           while ($row = $result->fetch_assoc()) {
                             echo "<option value='" . $row["id"] . "'>"
-                              . $row["subject_name"]    // ✅ Tên môn thay vì ID
-                              . " - ID:" . $row["id"]
+                              . $row["subject_name"] 
                               . " - Date:" . $row["date"]
                               . "</option>";
                           }
@@ -254,7 +253,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         if ($result->num_rows > 0) {
                           // output data of each row
                           while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row["sid"] . "' >" . $row["fname"] . " " . $row["lname"] . " -ID:" . $row["sid"] . "</option>";
+                            echo "<option value='" . $row["sid"] . "' >" . $row["fname"] . " " . $row["lname"]  . "</option>";
                           }
                         }
                         ?>
