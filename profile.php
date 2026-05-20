@@ -12,7 +12,7 @@ if (!isset($_SESSION['user'])) {
 
 if($_SESSION['role']=='Student'){
   $sid = $_SESSION['uid'];
-
+$fname = $lname = $classroom = $email = $dob = $gender = $address = $parent = '';
 
   if (isset($_POST['submit'])) {
 
@@ -78,7 +78,7 @@ if($_SESSION['role']=='Student'){
 }else if($_SESSION['role']=='Parent'){
   $pid = $_SESSION['uid'];
 
-
+$nic = $fname = $lname = $contact = $occupation = $dob = $gender = $address = $email = '';
 
   if (isset($_POST['submit'])) {
     $nic = $_POST['nic'];
@@ -143,7 +143,7 @@ if($_SESSION['role']=='Student'){
 }
 }else if($_SESSION['role']=='Teacher'){
   $tid = $_SESSION['uid'];
-
+$fname = $lname = $email = $address = $contact = $skill = $dob = $gender = '';
 
   if (isset($_POST['submit'])) {
     $fname = $_POST['fname'];
@@ -473,7 +473,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-md-12">
                           <div class="form-group">
                             <label for="exampleInputPassword1">Email</label>
-                            <input name="email" type="email" class="form-control" id="exampleInputPassword1" disabled=""> required value=<?php echo "'".$email."'"; ?>>
+                            <input name="email" type="email" class="form-control" disabled required value="<?php echo $email; ?>">
+
                           </div>
                         </div>
 
