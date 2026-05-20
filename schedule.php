@@ -3,8 +3,8 @@
 
 include_once 'database.php';
 if (!isset($_SESSION['user']) || $_SESSION['role'] != 'Teacher') {
-    # code...
-    header('Location:./logout.php');
+  # code...
+  header('Location:./logout.php');
 }
 ?>
 <?php
@@ -13,24 +13,24 @@ $id = $fname = $lname = $schedule = $dob = $gender = $address = $parent = " ";
 
 
 if (isset($_GET['update'])) {
-    $update = "SELECT * FROM schedule WHERE id='" . $_GET['update'] . "'";
-    $result = $conn->query($update);
+  $update = "SELECT * FROM schedule WHERE id='" . $_GET['update'] . "'";
+  $result = $conn->query($update);
 
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while ($row = $result->fetch_assoc()) {
-            $id = $row['id'];
-            $fname = $row['fname'];
-            $lname = $row['lname'];
-            $schedule = $row['schedule'];
-            $email = $row['email'];
-            $dob = date_format(new DateTime($row['bday']), 'Y-m-d');
-            //echo $dob;
-            $gender = $row['gender'];
-            $address = $row['address'];
-            $parent = $row['parent'];
-        }
+  if ($result->num_rows > 0) {
+    // output data of each row
+    while ($row = $result->fetch_assoc()) {
+      $id = $row['id'];
+      $fname = $row['fname'];
+      $lname = $row['lname'];
+      $schedule = $row['schedule'];
+      $email = $row['email'];
+      $dob = date_format(new DateTime($row['bday']), 'Y-m-d');
+      //echo $dob;
+      $gender = $row['gender'];
+      $address = $row['address'];
+      $parent = $row['parent'];
     }
+  }
 }
 
 ?>
@@ -82,99 +82,99 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="x_content">
 
                                 <?php if (!isset($_GET['update'])) {
-                                    if (isset($_POST['submit'])) {
-                                        $subject = $_POST['subject'];
-                                        $teacher = $_POST['teacher'];
-                                        $classroom = $_POST['classroom'];
+                  if (isset($_POST['submit'])) {
+                    $subject = $_POST['subject'];
+                    $teacher = $_POST['teacher'];
+                    $classroom = $_POST['classroom'];
 
-                                        // $dob = date_format(new DateTime($_POST['dob']),'Y-m-d');
-                                        //echo $dob;
-                                        $day = $_POST['day'];
-                                        $stime = $_POST['stime'];
-                                        $etime = $_POST['etime'];
-
-
+                    // $dob = date_format(new DateTime($_POST['dob']),'Y-m-d');
+                    //echo $dob;
+                    $day = $_POST['day'];
+                    $stime = $_POST['stime'];
+                    $etime = $_POST['etime'];
 
 
 
 
-                                        try {
+
+
+                    try {
 
 
 
 
-                                            $sql = "INSERT INTO schedule (subject,teacher,class,day,stime,etime) VALUES ('" . $subject . "', '" . $teacher . "', '" . $classroom . "','" . $day . "','" . $stime . "','" . $etime . "')";
+                      $sql = "INSERT INTO schedule (subject,teacher,class,day,stime,etime) VALUES ('" . $subject . "', '" . $teacher . "', '" . $classroom . "','" . $day . "','" . $stime . "','" . $etime . "')";
 
-                                            if ($conn->query($sql) === TRUE) {
-                                                echo "<script type='text/javascript'> var x = document.getElementById('truemsg');
+                      if ($conn->query($sql) === TRUE) {
+                        echo "<script type='text/javascript'> var x = document.getElementById('truemsg');
                        x.style.display='block';</script>";
-                                            } else {
-                                            }
-                                        } catch (Exception $e) {
-                                        }
+                      } else {
+                      }
+                    } catch (Exception $e) {
+                    }
 
 
 
 
 
 
-                                        # code...
-                                    }
+                    # code...
+                  }
 
-                                ?>
+                ?>
                                 <?php } elseif (isset($_GET['update'])) { ?>
 
-                                    <div class="alert alert-success alert-dismissible" style="display: none;" id="truemsg">
-                                        <button type="button" class="close" data-dismiss="alert"
-                                            aria-hidden="true">×</button>
-                                        <h4><i class="icon fa fa-check"></i> Success!</h4>
-                                        Update Schedule Successfully
-                                    </div>
+                                <div class="alert alert-success alert-dismissible" style="display: none;" id="truemsg">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">×</button>
+                                    <h4><i class="icon fa fa-check"></i> Success!</h4>
+                                    Update Schedule Successfully
+                                </div>
 
                                 <?php
 
-                                    if (isset($_POST['submit'])) {
-                                        $id = $_POST['id'];
-                                        $fname = $_POST['fname'];
-                                        $lname = $_POST['lname'];
-                                        $schedule = $_POST['schedule'];
-                                        $email = $_POST['email'];
-                                        $dob = date_format(new DateTime($_POST['dob']), 'Y-m-d');
-                                        //echo $dob;
-                                        $gender = $_POST['gender'];
-                                        $address = $_POST['address'];
+                  if (isset($_POST['submit'])) {
+                    $id = $_POST['id'];
+                    $fname = $_POST['fname'];
+                    $lname = $_POST['lname'];
+                    $schedule = $_POST['schedule'];
+                    $email = $_POST['email'];
+                    $dob = date_format(new DateTime($_POST['dob']), 'Y-m-d');
+                    //echo $dob;
+                    $gender = $_POST['gender'];
+                    $address = $_POST['address'];
 
-                                        $parent = $_POST['parent'];
-
-
+                    $parent = $_POST['parent'];
 
 
 
-                                        try {
-
-                                            $sql = "UPDATE schedule set fname='" . $fname . "',lname='" . $lname . "',bday='" . $dob . "',address='" . $address . "',gender='" . $gender . "',parent=" . $parent . ",schedule='" . $schedule . "',email='" . $email . "' where id='" . $id . "'";
 
 
-                                            // $sql = "INSERT INTO schedule (id,fname,lname,bday,address,gender,parent,schedule) VALUES ('".$id."', '".$fname."', '".$lname."','".$dob."','".$address."','".$gender."','".$parent."','".$schedule."')";
+                    try {
 
-                                            if ($conn->query($sql) === TRUE) {
-                                                echo "<script type='text/javascript'> var x = document.getElementById('truemsg');
+                      $sql = "UPDATE schedule set fname='" . $fname . "',lname='" . $lname . "',bday='" . $dob . "',address='" . $address . "',gender='" . $gender . "',parent=" . $parent . ",schedule='" . $schedule . "',email='" . $email . "' where id='" . $id . "'";
+
+
+                      // $sql = "INSERT INTO schedule (id,fname,lname,bday,address,gender,parent,schedule) VALUES ('".$id."', '".$fname."', '".$lname."','".$dob."','".$address."','".$gender."','".$parent."','".$schedule."')";
+
+                      if ($conn->query($sql) === TRUE) {
+                        echo "<script type='text/javascript'> var x = document.getElementById('truemsg');
                      x.style.display='block';</script>";
-                                            } else {
-                                            }
-                                        } catch (Exception $e) {
-                                        }
+                      } else {
+                      }
+                    } catch (Exception $e) {
+                    }
 
 
 
 
 
 
-                                        # code...
-                                    }
-                                }
+                    # code...
+                  }
+                }
 
-                                ?>
+                ?>
 
                                 <form role="form" method="POST">
                                     <div class="box-body">
@@ -187,15 +187,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 style="width: 100%;" tabindex="-1" aria-hidden="true" name="subject">
                                                 <option>Select Subject</option>
                                                 <?php
-                                                $sql = "SELECT * FROM subject";
-                                                $result = $conn->query($sql);
-                                                if ($result->num_rows > 0) {
-                                                    // output data of each row
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        echo "<option value='" . $row["sid"] . "' >" . $row["title"] . "_ID:" . $row["sid"] . "</option>";
-                                                    }
-                                                }
-                                                ?>
+                        $sql = "SELECT * FROM subject";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                          // output data of each row
+                          while ($row = $result->fetch_assoc()) {
+                            echo "<option value='" . $row["sid"] . "' >" . $row["title"] . "</option>";
+                          }
+                        }
+                        ?>
                                             </select>
                                         </div>
 
@@ -205,15 +205,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 style="width: 100%;" tabindex="-1" aria-hidden="true" name="teacher">
                                                 <option>Select Teacher</option>
                                                 <?php
-                                                $sql = "SELECT * FROM teacher";
-                                                $result = $conn->query($sql);
-                                                if ($result->num_rows > 0) {
-                                                    // output data of each row
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        echo "<option value='" . $row["tid"] . "' >" . $row["fname"] . " " . $row["lname"] . "_ID:" . $row["tid"] . "</option>";
-                                                    }
-                                                }
-                                                ?>
+                        $sql = "SELECT * FROM teacher";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                          // output data of each row
+                          while ($row = $result->fetch_assoc()) {
+                            echo "<option value='" . $row["tid"] . "' >" . $row["lname"] . " " . $row["fname"] . "</option>";
+                          }
+                        }
+                        ?>
                                             </select>
                                         </div>
 
@@ -224,15 +224,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 style="width: 100%;" tabindex="-1" aria-hidden="true" name="classroom">
                                                 <option>Select Class Room</option>
                                                 <?php
-                                                $sql = "SELECT * FROM classroom";
-                                                $result = $conn->query($sql);
-                                                if ($result->num_rows > 0) {
-                                                    // output data of each row
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        echo "<option value='" . $row["hno"] . "' >" . $row["title"] . "</option>";
-                                                    }
-                                                }
-                                                ?>
+                        $sql = "SELECT * FROM classroom";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                          // output data of each row
+                          while ($row = $result->fetch_assoc()) {
+                            echo "<option value='" . $row["hno"] . "' >" . $row["title"] . "</option>";
+                          }
+                        }
+                        ?>
                                             </select>
                                         </div>
 
@@ -358,17 +358,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <tbody>
                                                     <?php
 
-                                                    $sql = "SELECT s.*, 
+                          $sql = "SELECT s.*, 
                                                                 sub.title as subject_name,
                                                                 CONCAT(t.fname, ' ', t.lname) as teacher_name
                                                             FROM schedule s 
                                                             LEFT JOIN subject sub ON sub.sid = s.subject
                                                             LEFT JOIN teacher t ON t.tid = s.teacher";
-                                                    $result = $conn->query($sql);
-                                                    if ($result->num_rows > 0) {
-                                                        while ($row = $result->fetch_assoc()) {
-                                                            $class = (isset($_GET['update']) && $_GET['update'] == $row["id"]) ? 'parent' : '';
-                                                            echo "<tr class='{$class}'>
+                          $result = $conn->query($sql);
+                          if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                              $class = (isset($_GET['update']) && $_GET['update'] == $row["id"]) ? 'parent' : '';
+                              echo "<tr class='{$class}'>
                                                             <td>" . $row["id"] . "</td>
                                                             <td>" . $row["subject_name"] . "</td> 
                                                             <td>" . $row["teacher_name"] . "</td>
@@ -377,10 +377,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <td>" . $row["stime"] . "</td>
                                                             <td>" . $row["etime"] . "</td>
                                                         </tr>";
-                                                        }
-                                                    }
+                            }
+                          }
 
-                                                    ?>
+                          ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -412,9 +412,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
     <script type="text/javascript">
-        $('#myDatepicker3, #myDatepicker4').datetimepicker({
-            format: 'hh:mm A'
-        });
+    $('#myDatepicker3, #myDatepicker4').datetimepicker({
+        format: 'hh:mm A'
+    });
     </script>
 
 </body>
