@@ -42,8 +42,8 @@
                                     </a></li>
                                 <li id="schedule"><a href="./schedule.php"><i class="fa fa-calendar-o"></i>
                                         <span>Schedule</span> </a></li>
-                                <li id="attendance"><a href="./attendance.php"><i class="fa  fa-check"></i>
-                                        <span>Attendance</span> </a></li>
+                                <!-- <li id="attendance"><a href="./attendance.php"><i class="fa  fa-check"></i>
+                                        <span>Attendance</span> </a></li> -->
                                 <li id="exam"><a href="./exam.php"><i class="fa fa-line-chart"></i> <span>Exam</span>
                                     </a></li>
                                 <li id="examresults"><a href="./examresults.php"><i class="fa fa-graduation-cap"></i>
