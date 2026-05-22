@@ -61,7 +61,8 @@
                                         <span>Notice</span> </a></li>
                                 <li id="examresults-par"><a href="./examresults-par.php"><i
                                             class="fa fa-graduation-cap"></i> <span>Exam Results</span> </a></li>
-
+                                <li id="schedule-par"><a href="./schedule-par.php"><i class="fa fa-calendar-o"></i>
+                                        <span>Schedule</span> </a></li>
                                 <?php
 
                     } elseif ($_SESSION['role'] == 'Student') { ?>
