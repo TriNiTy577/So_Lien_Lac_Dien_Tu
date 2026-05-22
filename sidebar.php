@@ -53,7 +53,6 @@
                                             <span>Notice</span> </a></li>
 
                                 <?php } elseif ($_SESSION['role'] == 'Parent') {
-<<<<<<< HEAD
                     ?>
                                 <li id="student-par"><a href="./student-par.php"><i class="fa fa-users"></i>
                                         <span>Student</span> </a></li>
@@ -63,16 +62,6 @@
                                             class="fa fa-graduation-cap"></i> <span>Exam Results</span> </a></li>
                                 <li id="schedule-par"><a href="./schedule-par.php"><i class="fa fa-calendar-o"></i>
                                         <span>Schedule</span> </a></li>
-=======
-                                ?>
-                                    <li id="student-par"><a href="./student-par.php"><i class="fa fa-users"></i>
-                                            <span>Student</span> </a></li>
-                                    <li id="notice-role"><a href="./notice-role.php"><i class="fa fa-envelope-o"></i>
-                                            <span>Notice</span> </a></li>
-                                    <li id="examresults-par"><a href="./examresults-par.php"><i
-                                                class="fa fa-graduation-cap"></i> <span>Exam Results</span> </a></li>
-
->>>>>>> 76386dffc85edfa2209dfcbd20778dd53de66a08
                                 <?php
 
                                 } elseif ($_SESSION['role'] == 'Student') { ?>
